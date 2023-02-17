@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container">
+    <%= link_to "Finanças Zen", root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Inicio", root_path, class: 'nav-link active' %>
+        </li>
+      </ul>
+      <% if user_signed_in?%>
+        <%= link_to "Sair", destroy_user_session_path, method: :delete, data: { confirm: 'Tem certeza?'}, class: 'navbar-brand' %>
+      <% else %>
+        <%= link_to "Criar conta", new_user_registration_path, class: 'navbar-brand' %>
+        <%= link_to "Entrar", new_user_session_path, class: 'navbar-brand' %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
