@@ -1,0 +1,47 @@
+<%= form_with(model: transaction) do |form| %>
+  <% if transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :kind, style: "display: block" %>
+    <%= form.number_field :kind %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :value, style: "display: block" %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :source_id, style: "display: block" %>
+    <%= form.text_field :source_id %>
+  </div>
+
+  <div>
+    <%= form.label :date_transaction, style: "display: block" %>
+    <%= form.datetime_field :date_transaction %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
