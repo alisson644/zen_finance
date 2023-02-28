@@ -22,6 +22,7 @@ class SourcesController < ApplicationController
   # POST /sources or /sources.json
   def create
     @source = Source.new(source_params)
+    @source.user = current_user
 
     respond_to do |format|
       if @source.save

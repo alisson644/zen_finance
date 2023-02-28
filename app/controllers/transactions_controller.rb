@@ -22,6 +22,7 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.user = current_user
 
     respond_to do |format|
       if @transaction.save

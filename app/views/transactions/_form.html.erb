@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :kind, style: "display: block" %>
-    <%= form.number_field :kind %>
+    <%= form.select :kind, Transaction.kinds.keys %>
   </div>
 
   <div>
@@ -27,13 +27,8 @@
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
     <%= form.label :source_id, style: "display: block" %>
-    <%= form.text_field :source_id %>
+    <%= form.collection_select :source_id, current_user.sources ,:id,:name, include_blank: true %>
   </div>
 
   <div>
