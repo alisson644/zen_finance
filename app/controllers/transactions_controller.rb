@@ -3,7 +3,9 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    today = Time.now
+    @transactions = current_user.transactions.where('date_transaction >= :start_date AND date_transaction <= :end_date',
+      {:start_date => Time.new(today.year, today.month, today.day) - 3.hours, :end_date => Time.new(today.year, today.month, today.day, 20, 59)})
   end
 
   # GET /transactions/1 or /transactions/1.json
