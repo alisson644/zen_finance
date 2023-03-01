@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :date_transaction, style: "display: block" %>
-    <%= form.date_field :date_transaction %>
+    <%= form.date_field :date_transaction, :value => Time.now.strftime('%Y-%m-%d') %>
   </div>
 
   <div>

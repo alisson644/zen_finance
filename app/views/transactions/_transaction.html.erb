@@ -11,17 +11,17 @@
 
   <p>
     <strong>Value:</strong>
-    <%= transaction.value %>
+    R$ <%= transaction.value %>
   </p>
 
   <p>
     <strong>User:</strong>
-    <%= transaction.user_id %>
+    <%= transaction.user.email %>
   </p>
 
   <p>
     <strong>Source:</strong>
-    <%= transaction.source_id %>
+    <%= transaction.source.name %>
   </p>
 
   <p>
