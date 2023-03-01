@@ -3,6 +3,12 @@
 <h1>Transactions</h1>
 
 <div id="transactions">
+<%= form_tag root_path, :method => 'get' do %>
+  <p>
+    <%= date_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
   <% @sources.each do |source|%>
     <table class="table table-bordered table-striped table-hover">
       <thead>

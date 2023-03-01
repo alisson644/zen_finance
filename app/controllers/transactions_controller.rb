@@ -3,9 +3,9 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    today = Time.now
+    search = params[:search].present? ? DateTime.iso8601(params[:search]): Time.now
     @transactions = current_user.transactions.where('date_transaction >= :start_date AND date_transaction <= :end_date',
-      {:start_date => Time.new(today.year, today.month, today.day) - 3.hours, :end_date => Time.new(today.year, today.month, today.day, 20, 59)})
+      {:start_date => Time.new(search.year, search.month, search.day) - 3.hours, :end_date => Time.new(search.year, search.month, search.day, 20, 59)})
     @sources = current_user.sources
   end
 
