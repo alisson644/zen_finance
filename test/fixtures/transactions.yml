@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  kind: 1
+  operation: 1
   description: MyString
   value: 9.99
   user: one
@@ -9,7 +9,7 @@ one:
   date_transaction: 2023-02-17 11:28:53
 
 two:
-  kind: 1
+  operation: 1
   description: MyString
   value: 9.99
   user: two

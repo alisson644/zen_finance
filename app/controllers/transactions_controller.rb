@@ -4,9 +4,11 @@ class TransactionsController < ApplicationController
   # GET /transactions or /transactions.json
   def index
     search = params[:search].present? ? DateTime.iso8601(params[:search]): Time.now
-    @transactions = current_user.transactions.where('date_transaction >= :start_date AND date_transaction <= :end_date',
+    @transactions = get_current_trasactions.where('date_transaction >= :start_date AND date_transaction <= :end_date',
       {:start_date => Time.new(search.year, search.month, search.day) - 3.hours, :end_date => Time.new(search.year, search.month, search.day, 20, 59)})
     @sources = current_user.sources
+    @total_in_month = get_current_trasactions.where(operation: 'in').where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month).pluck(:value).sum
+    @total_out_month = get_current_trasactions.where(operation: 'out').where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month).pluck(:value).sum
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -69,6 +71,18 @@ class TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:kind, :description, :value, :user_id, :source_id, :date_transaction)
+      params.require(:transaction).permit(:operation, :description, :value, :user_id, :source_id, :date_transaction)
+    end
+
+    def get_current_trasactions
+      current_user.transactions
+    end
+
+    def search_month
+      where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month)
+    end
+
+    def sum_value
+      pluck(:value).sum
     end
 end

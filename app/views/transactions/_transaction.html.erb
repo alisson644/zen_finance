@@ -1,7 +1,7 @@
 <div id="<%= dom_id transaction %>">
   <p>
-    <strong>Kind:</strong>
-    <%= transaction.kind %>
+    <strong>Operation:</strong>
+    <%= transaction.operation %>
   </p>
 
   <p>
@@ -26,7 +26,7 @@
 
   <p>
     <strong>Date transaction:</strong>
-    <%= transaction.date_transaction %>
+    <%= transaction.date_transaction.strftime('%Y-%m-%d') %>
   </p>
 
 </div>

@@ -7,7 +7,7 @@ RSpec.describe Transaction, type: :model do
       it { is_expected.to have_db_index :user_id }
     end
     context 'columns' do
-      it { is_expected.to have_db_column(:kind) }
+      it { is_expected.to have_db_column(:operation) }
       it { is_expected.to have_db_column(:description) }
       it { is_expected.to have_db_column(:value) }
       it { is_expected.to have_db_column(:user_id) }

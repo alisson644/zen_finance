@@ -9,6 +9,12 @@
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
+<% if @total_in_month.present? %>
+  <h3>Total Mês ganho: R$ <%= @total_in_month%></h3>
+<% end %>
+<% if @total_out_month.present? %>
+  <h3>Total Mês Gastos: R$ <%= @total_out_month%></h3>
+<% end %>
   <% @sources.each do |source|%>
     <table class="table table-bordered table-striped table-hover">
       <thead>
@@ -16,7 +22,7 @@
           <th colspan="5" scope="col" style="text-align:center;"><%= source.name.capitalize %></th>
         <tr>
         <tr>
-          <th scope="col">Kind</th>
+          <th scope="col">Operation</th>
           <th scope="col">Description</th>
           <th scope="col">Value</th>
           <th scope="col">Date</th>
@@ -26,8 +32,8 @@
      <% @transactions.each do |transaction| %>
       <tbody> 
         <% if transaction.source == source%>
-          <tr class=<%= transaction.kind == 'in' ? "table-success" : "table-danger" %>>
-            <th scope="row"><%=transaction.kind %></th>
+          <tr class=<%= transaction.operation == 'in' ? "table-success" : "table-danger" %>>
+            <th scope="row"><%=transaction.operation %></th>
             <td><%=transaction.description %></td>
             <td>R$ <%= transaction.value %></td>
             <td><%= transaction.date_transaction.strftime('%d/%m/%Y') %></td>

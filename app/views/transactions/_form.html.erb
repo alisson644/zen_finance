@@ -12,8 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :kind, style: "display: block" %>
-    <%= form.select :kind, Transaction.kinds.keys %>
+    <%= form.label :operation, style: "display: block" %>
+    <%= form.select :operation, Transaction.operations.keys %>
   </div>
 
   <div>

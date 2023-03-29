@@ -16,7 +16,7 @@ class TransactionsTest < ApplicationSystemTestCase
 
     fill_in "Date transaction", with: @transaction.date_transaction
     fill_in "Description", with: @transaction.description
-    fill_in "Kind", with: @transaction.kind
+    fill_in "Operation", with: @transaction.operation
     fill_in "Source", with: @transaction.source_id
     fill_in "User", with: @transaction.user_id
     fill_in "Value", with: @transaction.value
@@ -32,7 +32,7 @@ class TransactionsTest < ApplicationSystemTestCase
 
     fill_in "Date transaction", with: @transaction.date_transaction
     fill_in "Description", with: @transaction.description
-    fill_in "Kind", with: @transaction.kind
+    fill_in "Operation", with: @transaction.operation
     fill_in "Source", with: @transaction.source_id
     fill_in "User", with: @transaction.user_id
     fill_in "Value", with: @transaction.value
