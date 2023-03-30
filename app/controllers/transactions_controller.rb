@@ -3,12 +3,12 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    search = params[:search].present? ? DateTime.iso8601(params[:search]): Time.now
-    @transactions = get_current_trasactions.where('date_transaction >= :start_date AND date_transaction <= :end_date',
-      {:start_date => Time.new(search.year, search.month, search.day) - 3.hours, :end_date => Time.new(search.year, search.month, search.day, 20, 59)})
-    @sources = current_user.sources
-    @total_in_month = get_current_trasactions.where(operation: 'in').where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month).pluck(:value).sum
-    @total_out_month = get_current_trasactions.where(operation: 'out').where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month).pluck(:value).sum
+    @transactions = get_current_trasactions.filter_for_date(search_date)
+    if current_user.present?
+      @sources = current_user.sources
+      @total_in_month = get_current_trasactions.where(operation: 'in').filter_atual_month_trasactions.sum_value
+      @total_out_month = get_current_trasactions.where(operation: 'out').filter_atual_month_trasactions.sum_value
+    end
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -78,8 +78,9 @@ class TransactionsController < ApplicationController
       current_user.transactions
     end
 
-    def search_month
-      where('date_transaction BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month)
+    def search_date
+      return DateTime.iso8601(params[:search]) if params[:search].present?
+      Time.now
     end
 
     def sum_value
