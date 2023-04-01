@@ -21,4 +21,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many :transactions }
     it { is_expected.to have_many :sources }
   end
+
+  describe 'create user' do
+  end
 end
