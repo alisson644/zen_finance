@@ -23,5 +23,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'create user' do
+    subject { FactoryBot.build(:user) }
+
+    it { should validate_presence_of(:name) }
   end
 end
