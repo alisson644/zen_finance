@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Transaction, type: :model do
+RSpec.describe Movimentation, type: :model do
   describe 'database' do
     context 'index' do
       it { is_expected.to have_db_index :source_id }

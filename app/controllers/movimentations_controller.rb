@@ -1,4 +1,4 @@
-class TransactionsController < ApplicationController
+class MovimentationsController < ApplicationController
   before_action :set_transaction, only: %i[ show edit update destroy ]
 
   # GET /transactions or /transactions.json
@@ -17,7 +17,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @transaction = Transaction.new
+    @transaction = Movimentation.new
   end
 
   # GET /transactions/1/edit
@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Movimentation.new(transaction_params)
     @transaction.user = current_user
 
     respond_to do |format|
@@ -58,7 +58,7 @@ class TransactionsController < ApplicationController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: "Transaction was successfully destroyed." }
+      format.html { redirect_to movimentation_url, notice: "Transaction was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -66,16 +66,16 @@ class TransactionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      @transaction = Movimentation.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:operation, :description, :value, :user_id, :source_id, :date_transaction)
+      params.require(:movimentation).permit(:operation, :description, :value, :user_id, :source_id, :date_transaction)
     end
 
     def get_current_trasactions
-      current_user.transactions
+      current_user.movimentations
     end
 
     def search_date

@@ -1,0 +1,32 @@
+<div id="<%= dom_id movimentation %>">
+  <p>
+    <strong>Operation:</strong>
+    <%= movimentation.operation %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= movimentation.description %>
+  </p>
+
+  <p>
+    <strong>Value:</strong>
+    R$ <%= movimentation.value %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= movimentation.user.email %>
+  </p>
+
+  <p>
+    <strong>Source:</strong>
+    <%= movimentation.source.name %>
+  </p>
+
+  <p>
+    <strong>Date movimentation:</strong>
+    <%= movimentation.date_movimentation.strftime('%Y-%m-%d') %>
+  </p>
+
+</div>
