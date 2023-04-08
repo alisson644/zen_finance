@@ -21,4 +21,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many :transactions }
     it { is_expected.to have_many :sources }
   end
+
+  describe 'create user' do
+    subject { FactoryBot.build(:user) }
+
+    it { should validate_presence_of(:name) }
+  end
 end
