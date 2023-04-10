@@ -29,7 +29,7 @@
           <th scope="col">Show</th>
         </tr>
      </thead>
-     <% @transactions.each do |transaction| %>
+     <% @movimentations.each do |transaction| %>
       <tbody> 
         <% if transaction.source == source%>
           <tr class=<%= transaction.operation == 'in' ? "table-success" : "table-danger" %>>

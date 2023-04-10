@@ -3,7 +3,7 @@ class MovimentationsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = get_current_trasactions.filter_for_date(search_date)
+    @movimentations = get_current_trasactions.filter_for_date(search_date)
     if current_user.present?
       @sources = current_user.sources
       @total_in_month = get_current_trasactions.where(operation: 'in').filter_atual_month_trasactions.sum_value
@@ -17,7 +17,7 @@ class MovimentationsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @transaction = Movimentation.new
+    @movimentation = Movimentation.new
   end
 
   # GET /transactions/1/edit
@@ -26,16 +26,16 @@ class MovimentationsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Movimentation.new(transaction_params)
-    @transaction.user = current_user
+    @movimentation = Movimentation.new(transaction_params)
+    @movimentation.user = current_user
 
     respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully created." }
-        format.json { render :show, status: :created, location: @transaction }
+      if @movimentation.save
+        format.html { redirect_to movimentation_url(@movimentation), notice: "movimentation was successfully created." }
+        format.json { render :show, status: :created, location: @movimentation }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.json { render json: @movimentation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,22 +43,22 @@ class MovimentationsController < ApplicationController
   # PATCH/PUT /transactions/1 or /transactions/1.json
   def update
     respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully updated." }
-        format.json { render :show, status: :ok, location: @transaction }
+      if @movimentation.update(transaction_params)
+        format.html { redirect_to movimentation_url(@movimentation), notice: "Transaction was successfully updated." }
+        format.json { render :show, status: :ok, location: @movimentation }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.json { render json: @movimentation.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /transactions/1 or /transactions/1.json
   def destroy
-    @transaction.destroy
+    @movimentation.destroy
 
     respond_to do |format|
-      format.html { redirect_to movimentation_url, notice: "Transaction was successfully destroyed." }
+      format.html { redirect_to root_url, notice: "Transaction was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -66,7 +66,7 @@ class MovimentationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transaction = Movimentation.find(params[:id])
+      @movimentation = Movimentation.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
