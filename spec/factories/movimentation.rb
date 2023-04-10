@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :transaction do
+  factory :movimentation do
     operation { [0,1].sample }
     description { Faker::Commerce.product_name }
     value { Faker::Number.between(from: 1.0, to: 2000.0) }

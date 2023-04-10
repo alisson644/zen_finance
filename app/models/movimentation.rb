@@ -1,6 +1,8 @@
-class Transaction < ApplicationRecord
+class Movimentation < ApplicationRecord
   belongs_to :user
   belongs_to :source
+
+  has_one :category
 
   enum operation: {in: 0, out: 1}
 

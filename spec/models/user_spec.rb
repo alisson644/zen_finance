@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relationship' do
-    it { is_expected.to have_many :transactions }
+    it { is_expected.to have_many :movimentations }
     it { is_expected.to have_many :sources }
   end
 
