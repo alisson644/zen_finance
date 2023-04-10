@@ -1,1 +1,1 @@
-json.array! @transactions, partial: "movimentations/movimentation", as: :movimentation
+json.array! @movimentation, partial: "movimentations/movimentation", as: :movimentation
