@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :transactions
+  resources :movimentations
   resources :sources
   devise_for :users
   get 'home/index'
 
   authenticated :user do
-    root "transactions#index", as: 'authenticated_root'
+    root "movimentations#index", as: 'authenticated_root'
   end
 
   # Defines the root path route ("/")

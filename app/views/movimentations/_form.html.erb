@@ -1,10 +1,10 @@
-<%= form_with(model: transaction) do |form| %>
-  <% if transaction.errors.any? %>
+<%= form_with(model: movimentation) do |form| %>
+  <% if movimentation.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <h2><%= pluralize(movimentation.errors.count, "error") %> prohibited this movimentation from being saved:</h2>
 
       <ul>
-        <% transaction.errors.each do |error| %>
+        <% movimentation.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :operation, style: "display: block" %>
-    <%= form.select :operation, Transaction.operations.keys %>
+    <%= form.select :operation, Movimentation.operations.keys %>
   </div>
 
   <div>
